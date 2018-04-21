@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   
   def index
     @tasks = Task.all
+    
   end
     
     
@@ -18,7 +19,7 @@ class TasksController < ApplicationController
       flash[:success] = "投稿されました"
       redirect_to @task   # task_path(@task)と同じ。/tasks/:idへリダイレクト。showアクションが呼ばれる。
     else
-      flash[:danger] = "投稿できませんでした"
+      flash.now[:danger] = "投稿できませんでした"
       render :new         # newアクションは実行せず、単にnew.html.erbを表示。
     end
   end
@@ -28,7 +29,7 @@ class TasksController < ApplicationController
   end
   
   def edit
-    @task = Tasks.find(params[:id])
+    @task = Task.find(params[:id])
   end
   
   def show
@@ -39,11 +40,11 @@ class TasksController < ApplicationController
     # updateアクションに対応するビューは用意しない。出口はredirect_toかrenderのいずれか。
     
     @task = Task.find(params[:id])
-    if @task.update(message_params)
+    if @task.update(task_params)
       flash[:success] = "更新されました"
       redirect_to @task     # /tasks/:idへリダイレクト。showアクションが呼ばれる。
     else
-      flash[:danger] = "更新できませんでした"
+      flash.now[:danger] = "更新できませんでした"
       render :edit          # edit.html.erbを表示。
     end
   end
@@ -51,7 +52,7 @@ class TasksController < ApplicationController
   def destroy
     # destroyアクションに対応するビューは用意しない。
     # show.html.erbのリンクから、tasks/:idにDELETEメソッドを送信することで呼ばれる。
-    @task = Tasks.find(params[:id])
+    @task = Task.find(params[:id])
     
     @task.destroy
     flash[:success] = "削除されました"
