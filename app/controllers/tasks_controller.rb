@@ -63,7 +63,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:content)    # taskモデルのcontentカラムのみ受け取る
+    params.require(:task).permit(:content, :status)    # taskモデルのcontentカラムとstatusカラムのみ受け取る
   end
   
 end
