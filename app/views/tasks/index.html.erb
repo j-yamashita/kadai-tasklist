@@ -1,11 +1,31 @@
 <h1>タスク一覧</h1>
 
-<ul>
-  <% @tasks.each do |task| %>
-    <li><%= link_to task.id, task %>：<%= task.status%>：<%= task.content %></li>
-  <% end %>
-</ul>
+<!--<ul>-->
+<!--  <% @tasks.each do |task| %>-->
+<!--    <li><%= link_to task.id, task %>：<%= task.status%>：<%= task.content %></li>-->
+<!--  <% end %>-->
+<!--</ul>-->
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="col-xs-1 col-sm-1">id</th>
+      <th class="col-xs-4 col-sm-2">状態</th>
+      <th class="col-xs-7 col-sm-9">タスク</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= link_to task.id, task %></td>
+        <td><%= task.status%></td>
+        <td><%= task.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= paginate @tasks %>
-
-<%= link_to '新規タスクの登録', new_task_path %>
-
+<div>
+<%= link_to '新規タスクの登録', new_task_path, class: 'btn btn-primary' %>
+</div>

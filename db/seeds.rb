@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-100.times do |i|
-  Task.create(content: "タスク#{i}", status: "ステータス#{i}")
+states = ["未着手", "着手", "完了", "保留", "中止"]
+(1..100).each do |i|
+  Task.create(content: "タスク#{i}", status: states.sample)
 end
