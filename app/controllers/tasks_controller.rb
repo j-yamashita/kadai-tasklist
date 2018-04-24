@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
   
   def index
-    @tasks = Task.all
+    # @tasks = Task.all
+    @tasks = Task.all.page(params[:page]) # kaminariを使うため.page(params[:page])を追加
     
   end
     

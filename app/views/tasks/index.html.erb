@@ -4,6 +4,8 @@
   <% @tasks.each do |task| %>
     <li><%= link_to task.id, task %>：<%= task.status%>：<%= task.content %></li>
   <% end %>
-  
-  <%= link_to '新規タスクの登録', new_task_path %>
 </ul>
+<%= paginate @tasks %>
+
+<%= link_to '新規タスクの登録', new_task_path %>
+
