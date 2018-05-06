@@ -1,5 +1,8 @@
 class TasksController < ApplicationController
   
+  before_action :require_user_logged_in
+  
+  
   def index
     # @tasks = Task.all
     @tasks = Task.all.page(params[:page]) # kaminariを使うため.page(params[:page])を追加
